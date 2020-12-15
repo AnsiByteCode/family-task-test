@@ -1,8 +1,9 @@
 @using Domain.ViewModel
 @using WebClient.Abstractions
-
+ 
 @namespace WebClient.Components
 @inject IMemberDataService memberDataService
+@inject NavigationManager navigationManager
 
 
 <style>
@@ -125,11 +126,15 @@
     private void OnUpdateClick()
     {
         memberDataService.UpdateMember(member);
+        memberDataService.SelectNullMember();
+        navigationManager.NavigateTo("manage-tasks");
     }
 
     private void OnAddClick()
     {
         memberDataService.CreateMember(member);
+        memberDataService.SelectNullMember();
+        navigationManager.NavigateTo("manage-tasks");
     }
 
     private void OnAvatarSelect(string item)

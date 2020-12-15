@@ -1,26 +1,72 @@
-﻿using System;
+﻿using Domain.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using WebClient.Shared.Models;
 
 namespace WebClient.Abstractions
 {
     /// <summary>
-    /// This Service is currently using the TaskModel Class, and will need to use a shared view
-    /// model after the model has been created.  For the moment, this pattern facilitates a client
-    /// side storage mechanism to view functionality.  See work completed for the MemberDataService
-    /// for an example of expectations.
+    /// ITask Data Service
     /// </summary>
     public interface ITaskDataService
     {
-        List<TaskModel> Tasks { get; }
-        TaskModel SelectedTask { get; }
+        /// <summary>
+        /// Gets the tasks.
+        /// </summary>
+        /// <value>
+        /// The tasks.
+        /// </value>
+        IEnumerable<TaskVm> Tasks { get; }
+        /// <summary>
+        /// Gets the selected task.
+        /// </summary>
+        /// <value>
+        /// The selected task.
+        /// </value>
+        TaskVm SelectedTask { get; }
+        /// <summary>
+        /// Gets the draged task.
+        /// </summary>
+        /// <value>
+        /// The draged task.
+        /// </value>
+        TaskVm DragedTask { get; }
 
+        /// <summary>
+        /// Occurs when [create task failed].
+        /// </summary>
+        event EventHandler<string> CreateTaskFailed;
+        /// <summary>
+        /// Occurs when [tasks updated].
+        /// </summary>
         event EventHandler TasksUpdated;
-        event EventHandler TaskSelected;
+        /// <summary>
+        /// Occurs when [complete task failed].
+        /// </summary>
+        event EventHandler<string> CompleteTaskFailed;
 
-        void SelectTask(Guid id);
-        void ToggleTask(Guid id);
-        void AddTask(TaskModel model);
+        /// <summary>
+        /// Creates the task.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
+        Task CreateTask(TaskVm model);
+        /// <summary>
+        /// Assigns the task.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
+        Task AssignTask(TaskVm model);
+        /// <summary>
+        /// Toggles the task.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        Task ToggleTask(Guid id);
+        /// <summary>
+        /// Selects the draged task.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        void SelectDragedTask(Guid id);
     }
 }
