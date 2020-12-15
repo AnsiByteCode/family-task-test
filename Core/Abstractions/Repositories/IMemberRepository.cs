@@ -1,11 +1,12 @@
 ﻿using Domain.DataModels;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using Core.Abstractions.Repositories;
 
 namespace Core.Abstractions.Repositories
 {
+    /// <summary>
+    /// IMember Repository
+    /// </summary>
+    /// <seealso cref="Core.Abstractions.Repositories.IBaseRepository{System.Guid, Domain.DataModels.Member, Core.Abstractions.Repositories.IMemberRepository}" />
     public interface IMemberRepository : IBaseRepository<Guid, Member, IMemberRepository>
     {
     }

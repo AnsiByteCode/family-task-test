@@ -2,15 +2,18 @@
 using Domain.Commands;
 using Domain.DataModels;
 using Domain.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace WebApi.AutoMapper
 {
+    /// <summary>
+    /// Member Profile
+    /// </summary>
+    /// <seealso cref="AutoMapper.Profile" />
     public class MemberProfile : Profile
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MemberProfile" /> class.
+        /// </summary>
         public MemberProfile()
         {
             CreateMap<CreateMemberCommand, Member>();

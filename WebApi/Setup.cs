@@ -1,19 +1,22 @@
 ﻿using AutoMapper;
-using Domain.Commands;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using WebApi.AutoMapper;
 
 namespace WebApi
 {
+    /// <summary>
+    /// Setup
+    /// </summary>
     public static class Setup
     {
+        /// <summary>
+        /// Adds the supporting services.
+        /// </summary>
+        /// <param name="services">The services.</param>
+        /// <param name="configuration">The configuration.</param>
         public static void AddSupportingServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSwaggerGen();

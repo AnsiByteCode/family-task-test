@@ -5,25 +5,43 @@ using Domain.Commands;
 using Domain.DataModels;
 using Domain.Queries;
 using Domain.ViewModel;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Services
 {
+    /// <summary>
+    /// Member Service
+    /// </summary>
+    /// <seealso cref="Core.Abstractions.Services.IMemberService" />
     public class MemberService : IMemberService
     {
+        /// <summary>
+        /// The member repository
+        /// </summary>
         private readonly IMemberRepository _memberRepository;
+        /// <summary>
+        /// The mapper
+        /// </summary>
         private readonly IMapper _mapper;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MemberService"/> class.
+        /// </summary>
+        /// <param name="mapper">The mapper.</param>
+        /// <param name="memberRepository">The member repository.</param>
         public MemberService(IMapper mapper, IMemberRepository memberRepository)
         {
             _mapper = mapper;
             _memberRepository = memberRepository;
         }
 
+        /// <summary>
+        /// Creates the member command handler.
+        /// </summary>
+        /// <param name="command">The command.</param>
+        /// <returns></returns>
         public async Task<CreateMemberCommandResult> CreateMemberCommandHandler(CreateMemberCommand command)
         {
             var member = _mapper.Map<Member>(command);
@@ -36,7 +54,12 @@ namespace Services
                 Payload = vm
             };
         }
-        
+
+        /// <summary>
+        /// Updates the member command handler.
+        /// </summary>
+        /// <param name="command">The command.</param>
+        /// <returns></returns>
         public async Task<UpdateMemberCommandResult> UpdateMemberCommandHandler(UpdateMemberCommand command)
         {
             var isSucceed = true;
@@ -54,6 +77,10 @@ namespace Services
             };
         }
 
+        /// <summary>
+        /// Gets all members query handler.
+        /// </summary>
+        /// <returns></returns>
         public async Task<GetAllMembersQueryResult> GetAllMembersQueryHandler()
         {
             IEnumerable<MemberVm> vm = new List<MemberVm>();
