@@ -15,6 +15,7 @@ namespace Services
         public static void AddServiceLayer(this IServiceCollection services)
         {
             services.AddTransient<IMemberService, MemberService>();
+            services.AddTransient<ITaskService, TaskService>();
         }
     }
 }

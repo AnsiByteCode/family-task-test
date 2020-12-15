@@ -14,7 +14,7 @@ namespace DataLayer
         /// Initializes a new instance of the <see cref="FamilyTaskContext"/> class.
         /// </summary>
         /// <param name="options">The options.</param>
-        public FamilyTaskContext(DbContextOptions<FamilyTaskContext> options):base(options)
+        public FamilyTaskContext(DbContextOptions<FamilyTaskContext> options) : base(options)
         {
 
         }
@@ -27,7 +27,14 @@ namespace DataLayer
         /// </value>
         public DbSet<Member> Members { get; set; }
 
-        
+        /// <summary>
+        /// Gets or sets the tasks.
+        /// </summary>
+        /// <value>
+        /// The tasks.
+        /// </value>
+        public DbSet<Task> Tasks { get; set; }
+
         /// <summary>
         /// Override this method to further configure the model that was discovered by convention from the entity types
         /// exposed in <see cref="T:Microsoft.EntityFrameworkCore.DbSet`1" /> properties on your derived context. The resulting model may be cached
@@ -47,6 +54,11 @@ namespace DataLayer
             modelBuilder.Entity<Member>(entity => {
                 entity.HasKey(k => k.Id);
                 entity.ToTable("Member");
+            });
+
+            modelBuilder.Entity<Task>(entity => {
+                entity.HasKey(task => task.Id);
+                entity.ToTable("Task");
             });
         }
     }
